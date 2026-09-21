@@ -9,7 +9,8 @@ import {
   DirectionalLight, Fog, MathUtils,
 } from 'three';
 
-const CYAN = 0x34e4ff, VIOLET = 0x7c4dff, PINK = 0xff3d9a;
+// Палитра: фиолетовый акцент, лавандовый и холодный серебристый
+const SILVER = 0xc9cfdb, VIOLET = 0x8b6cff, LAVENDER = 0xbcadff;
 
 export function mountScene(host, { reducedMotion = false } = {}) {
   const isTouch = matchMedia('(pointer: coarse)').matches;
@@ -25,7 +26,7 @@ export function mountScene(host, { reducedMotion = false } = {}) {
   host.appendChild(renderer.domElement);
 
   const scene = new Scene();
-  scene.fog = new Fog(0x15171c, 9, 17);
+  scene.fog = new Fog(0x131418, 9, 17);
   const camera = new PerspectiveCamera(34, 1, 0.1, 50);
   camera.position.set(0, 0.4, 10);
 
@@ -35,9 +36,9 @@ export function mountScene(host, { reducedMotion = false } = {}) {
   const key = new DirectionalLight(0xffffff, 1.4);
   key.position.set(3, 5, 6);
   scene.add(key);
-  const cyanL = new PointLight(CYAN, 40, 14, 1.6);
+  const cyanL = new PointLight(0x9fb2ff, 34, 14, 1.6);
   cyanL.position.set(-3.5, 1.5, 3);
-  const pinkL = new PointLight(PINK, 34, 14, 1.6);
+  const pinkL = new PointLight(VIOLET, 40, 14, 1.6);
   pinkL.position.set(3.5, -1.5, 2.5);
   scene.add(cyanL, pinkL);
 
@@ -72,7 +73,7 @@ export function mountScene(host, { reducedMotion = false } = {}) {
     const m = new Mesh(new CylinderGeometry(r, r, h, 6), i === 1 ? graphiteDark : graphite);
     m.position.y = y;
     m.rotation.y = i * 0.18;
-    withEdges(m, [CYAN, VIOLET, PINK][i], 0.95);
+    withEdges(m, [SILVER, VIOLET, LAVENDER][i], 0.95);
     hexStack.add(m);
   });
   addItem(hexStack, [0, -1.55, 0], [0.18, 0.4, 0], 0, 0.06);
@@ -84,19 +85,19 @@ export function mountScene(host, { reducedMotion = false } = {}) {
   screen.position.z = 0.052;
   const neck = new Mesh(new BoxGeometry(0.14, 0.5, 0.1), graphite);
   neck.position.set(0, -0.9, -0.06);
-  const foot = withEdges(new Mesh(new CylinderGeometry(0.45, 0.5, 0.06, 6), graphite), CYAN, 0.5);
+  const foot = withEdges(new Mesh(new CylinderGeometry(0.45, 0.5, 0.06, 6), graphite), SILVER, 0.5);
   foot.position.set(0, -1.15, -0.06);
   monitor.add(body, screen, neck, foot);
   addItem(monitor, [0.1, 0.55, -0.6], [0, -0.28, 0], 1.2, 0.08);
 
   // 3) Клавиатура: корпус + инстансы клавиш (один draw call)
   const kb = new Group();
-  const kbBody = withEdges(new Mesh(new BoxGeometry(2.1, 0.09, 0.72), graphiteDark), CYAN, 0.55);
+  const kbBody = withEdges(new Mesh(new BoxGeometry(2.1, 0.09, 0.72), graphiteDark), SILVER, 0.55);
   kb.add(kbBody);
   const cols = 14, rows = 4;
   const keys = new InstancedMesh(
     new BoxGeometry(0.12, 0.06, 0.12),
-    new MeshStandardMaterial({ color: 0x2e3340, emissive: 0x3a1f8a, emissiveIntensity: 0.55, roughness: 0.4, flatShading: true }),
+    new MeshStandardMaterial({ color: 0x2e3340, emissive: 0x2f2470, emissiveIntensity: 0.5, roughness: 0.4, flatShading: true }),
     cols * rows,
   );
   const d = new Object3D();
@@ -123,9 +124,9 @@ export function mountScene(host, { reducedMotion = false } = {}) {
   s.quadraticCurveTo(-0.95, 0.32, -0.55, 0.32);
   const padGeo = new ExtrudeGeometry(s, { depth: 0.22, bevelEnabled: true, bevelSize: 0.05, bevelThickness: 0.05, bevelSegments: 1, curveSegments: 5 });
   padGeo.center();
-  pad.add(withEdges(new Mesh(padGeo, graphite), PINK, 0.8));
+  pad.add(withEdges(new Mesh(padGeo, graphite), LAVENDER, 0.8));
   const btnMat = (c) => new MeshBasicMaterial({ color: c });
-  [[0.62, 0.1, CYAN], [0.76, -0.04, PINK], [0.48, -0.04, VIOLET], [0.62, -0.18, 0xffb547]].forEach(([x, y, c]) => {
+  [[0.62, 0.1, 0xffffff], [0.76, -0.04, LAVENDER], [0.48, -0.04, VIOLET], [0.62, -0.18, 0x9aa1ae]].forEach(([x, y, c]) => {
     const b = new Mesh(new IcosahedronGeometry(0.055, 0), btnMat(c));
     b.position.set(x, y, 0.17);
     pad.add(b);
@@ -140,13 +141,13 @@ export function mountScene(host, { reducedMotion = false } = {}) {
 
   // 5) Неоновые кристаллы вокруг
   const crystals = [
-    [new OctahedronGeometry(0.32, 0), CYAN, [-2.3, 1.2, 0.4]],
-    [new TetrahedronGeometry(0.3, 0), PINK, [2.1, 1.55, -0.4]],
-    [new IcosahedronGeometry(0.22, 0), VIOLET, [-1.95, -1.35, 1.2]],
-    [new OctahedronGeometry(0.18, 0), PINK, [1.3, 1.9, 1.1]],
+    [new OctahedronGeometry(0.32, 0), VIOLET, [-2.3, 1.2, 0.4]],
+    [new TetrahedronGeometry(0.3, 0), 0x6f7686, [2.1, 1.55, -0.4]],
+    [new IcosahedronGeometry(0.22, 0), LAVENDER, [-1.95, -1.35, 1.2]],
+    [new OctahedronGeometry(0.18, 0), VIOLET, [1.3, 1.9, 1.1]],
   ];
   crystals.forEach(([g, c, p], i) => {
-    const m = new Mesh(g, new MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.6, roughness: 0.3, flatShading: true }));
+    const m = new Mesh(g, new MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.35, roughness: 0.3, metalness: 0.4, flatShading: true }));
     withEdges(m, 0xffffff, 0.35);
     addItem(m, p, [i, i * 0.7, 0], 4 + i * 1.3, 0.22);
   });
@@ -161,7 +162,7 @@ export function mountScene(host, { reducedMotion = false } = {}) {
   }
   const dustGeo = new BufferGeometry();
   dustGeo.setAttribute('position', new Float32BufferAttribute(pos, 3));
-  const dust = new Points(dustGeo, new PointsMaterial({ color: 0x9fb4ff, size: 0.035, transparent: true, opacity: 0.7, depthWrite: false }));
+  const dust = new Points(dustGeo, new PointsMaterial({ color: 0xb9b3e6, size: 0.03, transparent: true, opacity: 0.7, depthWrite: false }));
   scene.add(dust);
 
   // ---------- раскладка под экран ----------
@@ -170,10 +171,15 @@ export function mountScene(host, { reducedMotion = false } = {}) {
     w = host.clientWidth; h = host.clientHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    // На узком экране сцена сверху (текст — снизу), на широком — справа от заголовка
-    if (camera.aspect < 0.8) layout = { x: -0.3, y: 2.25, s: 0.66 };
-    else if (camera.aspect < 1.25) layout = { x: 0.6, y: 0.9, s: 0.75 };
-    else layout = { x: 2.7, y: 0.05, s: 0.95 };
+    if (window.innerWidth < 960) {
+      // Телефон/планшет: у сцены своя область над текстом — вписываем композицию по центру.
+      // Видимая полувысота при fov 34° и дистанции 10 ≈ 3.06; композиция ≈ 5.4 × 4.2.
+      const half = 3.06;
+      const s = Math.min((half * 2 * 0.86) / 4.2, (half * camera.aspect * 2 * 0.92) / 5.4, 1.1);
+      layout = { x: -0.3 * s, y: -0.2 * s, s, center: true };
+    } else {
+      layout = { x: 2.7, y: 0.05, s: 0.95 };
+    }
     root.scale.setScalar(layout.s);
     root.position.set(layout.x, layout.y, 0);
     camera.updateProjectionMatrix();
@@ -257,7 +263,8 @@ export function mountScene(host, { reducedMotion = false } = {}) {
     root.rotation.x = cur.y * 0.18;
     camera.position.x = cur.x * 0.6;
     camera.position.y = 0.4 - cur.y * 0.4;
-    camera.lookAt(layout.x * 0.5, layout.y * 0.6, 0);
+    if (layout.center) camera.lookAt(0, 0, 0);
+    else camera.lookAt(layout.x * 0.5, layout.y * 0.6, 0);
     dust.rotation.y = t * 0.02 + cur.x * 0.1;
     cyanL.position.x = -3.5 + Math.sin(t * 0.7) * 1.2;
     pinkL.position.y = -1.5 + Math.cos(t * 0.6) * 1.2;
@@ -299,13 +306,13 @@ function screenTexture() {
   c.width = 512; c.height = 288;
   const g = c.getContext('2d');
   const bg = g.createLinearGradient(0, 0, 512, 288);
-  bg.addColorStop(0, '#0e2a4a');
-  bg.addColorStop(0.5, '#2a1260');
-  bg.addColorStop(1, '#4a0f3a');
+  bg.addColorStop(0, '#15172a');
+  bg.addColorStop(0.55, '#231a4f');
+  bg.addColorStop(1, '#2d1f63');
   g.fillStyle = bg;
   g.fillRect(0, 0, 512, 288);
   // горизонт и сетка
-  g.strokeStyle = 'rgba(52,228,255,.55)';
+  g.strokeStyle = 'rgba(188,173,255,.45)';
   g.lineWidth = 1.5;
   for (let i = 0; i < 12; i++) {
     const y = 170 + i * i * 1.1;
@@ -316,14 +323,14 @@ function screenTexture() {
   }
   // солнце
   const sun = g.createLinearGradient(0, 60, 0, 170);
-  sun.addColorStop(0, '#ffd36b');
-  sun.addColorStop(1, '#ff3d9a');
+  sun.addColorStop(0, '#ffffff');
+  sun.addColorStop(1, '#8b6cff');
   g.fillStyle = sun;
   g.beginPath(); g.arc(256, 170, 78, Math.PI, 0); g.fill();
-  g.fillStyle = '#2a1260';
+  g.fillStyle = '#231a4f';
   for (let i = 0; i < 5; i++) g.fillRect(170, 120 + i * 11, 172, 3 + i);
   // шестигранник-логотип
-  g.strokeStyle = '#e9edf3';
+  g.strokeStyle = '#eef0f4';
   g.lineWidth = 4;
   g.beginPath();
   for (let i = 0; i < 6; i++) {
@@ -332,9 +339,9 @@ function screenTexture() {
   }
   g.closePath(); g.stroke();
   // полоски HUD
-  g.fillStyle = 'rgba(233,237,243,.8)';
+  g.fillStyle = 'rgba(238,240,244,.8)';
   g.fillRect(400, 36, 80, 6);
-  g.fillStyle = '#34e4ff';
+  g.fillStyle = '#8b6cff';
   g.fillRect(400, 50, 56, 6);
   const tex = new CanvasTexture(c);
   tex.colorSpace = SRGBColorSpace;

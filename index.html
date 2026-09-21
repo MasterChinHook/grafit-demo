@@ -6,7 +6,7 @@
   <title>Grafit — компьютерный клуб в Белгороде, круглосуточно</title>
   <meta name="description" content="Компьютерный клуб Grafit в Белгороде: ПК на RTX 4060 Ti, PlayStation 5, бар. Проспект Богдана Хмельницкого, 62а, круглосуточно. Час игры — 90 ₽." />
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#15171c" />
+  <meta name="theme-color" content="#131418" />
   <meta name="color-scheme" content="dark" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ru_RU" />
@@ -23,6 +23,7 @@
   <a class="skip" href="#price">К ценам</a>
 
   <header class="topbar" data-topbar>
+    <span class="topbar__progress" aria-hidden="true"></span>
     <a class="brand" href="#top" aria-label="Grafit — наверх">
       <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#logo" /></svg>
       <span>Grafit</span>
@@ -62,6 +63,14 @@
 
       <a class="hero__scroll" href="#why" aria-label="Листать дальше"><span></span></a>
     </section>
+
+    <!-- Бегущая строка -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <div class="ticker__row"><span class="ticker__item">Круглосуточно</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">RTX 4060 Ti</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">PlayStation 5</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">Безалкогольный бар</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">Час — 90 ₽</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">Бронь в ВК</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg></div>
+        <div class="ticker__row"><span class="ticker__item">Круглосуточно</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">RTX 4060 Ti</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">PlayStation 5</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">Безалкогольный бар</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">Час — 90 ₽</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg><span class="ticker__item">Бронь в ВК</span><svg class="ticker__hex" viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1 19 6v10l-9 5-9-5V6z"/></svg></div>
+      </div>
+    </div>
 
     <!-- WHY -->
     <section class="section why" id="why" aria-labelledby="why-title">
@@ -112,9 +121,8 @@
           <svg viewBox="0 0 320 320">
             <defs>
               <linearGradient id="pinGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#34e4ff" />
-                <stop offset=".55" stop-color="#7c4dff" />
-                <stop offset="1" stop-color="#ff3d9a" />
+                <stop offset="0" stop-color="#bcadff" />
+                <stop offset="1" stop-color="#8b6cff" />
               </linearGradient>
             </defs>
             <g class="pin__grid" stroke="currentColor" fill="none" stroke-width="1">
@@ -124,7 +132,7 @@
             <circle class="pin__ring" cx="160" cy="142.5" r="46" fill="none" stroke="url(#pinGrad)" stroke-width="2" />
             <circle class="pin__ring pin__ring--2" cx="160" cy="142.5" r="46" fill="none" stroke="url(#pinGrad)" stroke-width="2" />
             <path d="M160 108l30 17v35l-30 17-30-17v-35z" fill="url(#pinGrad)" />
-            <path d="M169 133.5a11.5 11.5 0 1 0 1.5 8.5h-10.5" fill="none" stroke="#15171c" stroke-width="5" stroke-linecap="round" />
+            <path d="M169 133.5a11.5 11.5 0 1 0 1.5 8.5h-10.5" fill="none" stroke="#131418" stroke-width="5" stroke-linecap="round" />
           </svg>
         </div>
       </div>
@@ -192,13 +200,12 @@
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#34e4ff" />
-        <stop offset=".55" stop-color="#7c4dff" />
-        <stop offset="1" stop-color="#ff3d9a" />
+        <stop offset="0" stop-color="#bcadff" />
+        <stop offset="1" stop-color="#8b6cff" />
       </linearGradient>
       <symbol id="logo" viewBox="0 0 40 40">
         <path d="M20 2.5 35.2 11.25v17.5L20 37.5 4.8 28.75v-17.5z" fill="none" stroke="url(#logoGrad)" stroke-width="3" />
-        <path d="M26.5 15.5A7.5 7.5 0 1 0 27.5 21h-7" fill="none" stroke="#e9edf3" stroke-width="3.2" stroke-linecap="round" />
+        <path d="M26.5 15.5A7.5 7.5 0 1 0 27.5 21h-7" fill="none" stroke="#eef0f4" stroke-width="3.2" stroke-linecap="round" />
       </symbol>
     </defs>
   </svg>

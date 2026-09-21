@@ -28,6 +28,15 @@ $('[data-why]').innerHTML = reasons
     </li>`)
   .join('');
 
+/* Подсветка под курсором */
+$$('.why__item').forEach((el) => {
+  el.addEventListener('pointermove', (e) => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--sx', `${e.clientX - r.left}px`);
+    el.style.setProperty('--sy', `${e.clientY - r.top}px`);
+  });
+});
+
 /* ---------- Прайс ---------- */
 const maxH = Math.max(...prices.map((p) => p.hours));
 $('[data-prices]').innerHTML = prices
@@ -84,10 +93,10 @@ if (photos.length) {
 } else {
   $('[data-gallery-lead]').textContent = 'Игровой зал, консоли и бар — всё в одном месте.';
   const tones = [
-    ['rgba(52,228,255,.45)', 'rgba(124,77,255,.35)', 'Игровой зал', 'ПК на RTX 4060 Ti'],
-    ['rgba(255,61,154,.4)', 'rgba(124,77,255,.3)', 'Зона PS5', 'PlayStation 5 отдельно'],
-    ['rgba(124,77,255,.5)', 'rgba(52,228,255,.25)', 'Бар', 'Напитки и еда'],
-    ['rgba(52,228,255,.35)', 'rgba(255,61,154,.35)', 'Круглосуточно', 'Хмельницкого, 62а'],
+    ['rgba(139,108,255,.42)', 'rgba(120,135,170,.22)', 'Игровой зал', 'ПК на RTX 4060 Ti'],
+    ['rgba(188,173,255,.3)', 'rgba(139,108,255,.3)', 'Зона PS5', 'PlayStation 5 отдельно'],
+    ['rgba(120,135,170,.32)', 'rgba(139,108,255,.3)', 'Бар', 'Напитки и еда'],
+    ['rgba(139,108,255,.36)', 'rgba(188,173,255,.18)', 'Круглосуточно', 'Хмельницкого, 62а'],
   ];
   gallery.innerHTML = tones
     .map(([c1, c2, t, sub], i) => `
@@ -180,6 +189,8 @@ let bookVisible = false;
 new IntersectionObserver(([e]) => { bookVisible = e.isIntersecting; onScroll(); }, { threshold: 0.15 }).observe(book);
 function onScroll() {
   const y = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  topbar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
   topbar.classList.toggle('is-solid', y > 40);
   dock.classList.toggle('is-on', y > window.innerHeight * 0.6 && !bookVisible);
 }
