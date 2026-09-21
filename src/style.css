@@ -243,6 +243,7 @@ a { color: inherit; }
 .shot--ph .ph__icon { position: absolute; inset: 0; display: grid; place-items: center; opacity: .5; }
 .shot--ph .ph__icon svg { width: 34%; }
 .shot--ph figcaption { position: relative; display: grid; gap: 8px; font: 600 1.05rem/1.2 var(--display); }
+.shot--ph figcaption small { font: 500 .9rem/1.3 var(--body); color: var(--mute); }
 
 /* Как найти */
 .where__grid { display: grid; gap: 40px; align-items: center; }

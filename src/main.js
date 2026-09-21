@@ -42,7 +42,9 @@ $('[data-prices]').innerHTML = prices
       </div>
     </article>`)
   .join('');
-$('[data-prices-src]').innerHTML = todoHtml(pricesSource);
+const src = $('[data-prices-src]');
+if (pricesSource) src.innerHTML = todoHtml(pricesSource);
+else src.remove();
 
 /* 3D-наклон карточек: курсор на десктопе, палец на телефоне */
 if (!reduced) {
@@ -80,20 +82,20 @@ if (photos.length) {
       </figure>`)
     .join('');
 } else {
+  $('[data-gallery-lead]').textContent = 'Игровой зал, консоли и бар — всё в одном месте.';
   const tones = [
-    ['rgba(52,228,255,.45)', 'rgba(124,77,255,.35)', 'Игровой зал'],
-    ['rgba(255,61,154,.4)', 'rgba(124,77,255,.3)', 'Места и железо'],
-    ['rgba(124,77,255,.5)', 'rgba(52,228,255,.25)', 'Зона отдыха'],
-    ['rgba(52,228,255,.35)', 'rgba(255,61,154,.35)', 'Вход с проспекта'],
-    ['rgba(255,181,71,.3)', 'rgba(124,77,255,.35)', 'Ночью'],
+    ['rgba(52,228,255,.45)', 'rgba(124,77,255,.35)', 'Игровой зал', 'ПК на RTX 4060 Ti'],
+    ['rgba(255,61,154,.4)', 'rgba(124,77,255,.3)', 'Зона PS5', 'PlayStation 5 отдельно'],
+    ['rgba(124,77,255,.5)', 'rgba(52,228,255,.25)', 'Бар', 'Напитки и еда'],
+    ['rgba(52,228,255,.35)', 'rgba(255,61,154,.35)', 'Круглосуточно', 'Хмельницкого, 62а'],
   ];
   gallery.innerHTML = tones
-    .map(([c1, c2, t], i) => `
+    .map(([c1, c2, t, sub], i) => `
       <figure class="shot shot--ph" style="--c1:${c1};--c2:${c2};--gx:${20 + i * 15}%;--gy:${15 + (i % 3) * 20}%">
         <span class="ph__icon" aria-hidden="true">
           <svg viewBox="0 0 40 40"><use href="#logo" /></svg>
         </span>
-        <figcaption>${t}<span class="todo">Фото ${TODO}</span></figcaption>
+        <figcaption>${t}<small>${sub}</small></figcaption>
       </figure>`)
     .join('');
 }
