@@ -192,7 +192,7 @@ a { color: inherit; }
 .ticker__item {
   font: 700 clamp(1.05rem, 4.2vw, 1.6rem)/1 var(--display); letter-spacing: -.01em; padding: 0 22px; white-space: nowrap;
 }
-.ticker__item:nth-child(4n + 3) { color: transparent; -webkit-text-stroke: 1px var(--mute); }
+.ticker__item:nth-child(4n + 3) { color: var(--mute); }
 .ticker__hex { width: 14px; height: 15px; fill: var(--accent); flex-shrink: 0; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
@@ -220,7 +220,6 @@ a { color: inherit; }
 .why__item:hover::before { opacity: 1; }
 .why__item h3 { margin: 0 0 4px; font: 600 1rem/1.25 var(--display); }
 .why__item p { margin: 0; color: var(--mute); font-size: .95rem; line-height: 1.45; }
-.why__item--todo .why__big { background: none; color: transparent; -webkit-text-stroke: 1.5px var(--todo); }
 
 /* Прайс */
 .price { background: linear-gradient(180deg, var(--bg), var(--bg-2) 30%, var(--bg-2) 70%, var(--bg)); }
