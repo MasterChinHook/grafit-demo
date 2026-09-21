@@ -171,7 +171,7 @@ export function mountScene(host, { reducedMotion = false } = {}) {
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     // На узком экране сцена сверху (текст — снизу), на широком — справа от заголовка
-    if (camera.aspect < 0.8) layout = { x: -0.3, y: 1.75, s: 0.7 };
+    if (camera.aspect < 0.8) layout = { x: -0.3, y: 2.25, s: 0.66 };
     else if (camera.aspect < 1.25) layout = { x: 0.6, y: 0.9, s: 0.75 };
     else layout = { x: 2.7, y: 0.05, s: 0.95 };
     root.scale.setScalar(layout.s);
