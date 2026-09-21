@@ -11,9 +11,15 @@ npm run dev        # локально: http://localhost:5173/grafit-demo/
 npm run build      # сборка в dist/
 npm run preview    # просмотр сборки: http://localhost:4173/grafit-demo/
 npm run shots      # скриншоты и проверка консоли в Playwright (нужен запущенный preview)
+npm run deploy     # собрать и опубликовать на GitHub Pages вручную
 ```
 
-Деплой идёт сам: каждый push в `main` запускает GitHub Actions (`.github/workflows/deploy.yml`) и публикует сайт на GitHub Pages.
+Сайт: https://masterchinhook.github.io/grafit-demo/
+
+Сайт публикуется из ветки `gh-pages`. Обновить его можно двумя способами:
+
+- **Автоматически:** push в `main` запускает GitHub Actions (`.github/workflows/deploy.yml`). Workflow собирает сайт и кладёт сборку в `gh-pages`.
+- **Вручную:** `npm run deploy` делает то же самое с вашего компьютера. Нужен, пока Actions на аккаунте не работают: на 21.09.2026 они заблокированы из-за проблемы с оплатой.
 
 ## Что где менять
 
